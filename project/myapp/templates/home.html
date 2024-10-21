@@ -1,0 +1,57 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% block content %}
+<!-- Navbar -->
+<nav style="background-color: #45a049; padding: 10px;">
+    <div style="max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center;">
+        <a href="/" style="color: white; text-decoration: none; font-size: 24px;">MyShop</a>
+            <div>
+                {% comment %} {% if key1 %} {% endcomment %}
+                    {% comment %} <span style="color: white; margin-right: 15px;">Welcome, <h5>{{data.name}}</h5></span> {% endcomment %}
+                    {% comment %} <a href="{% url 'logout' %}" style="color: white; margin: 0 15px;">Logout</a> {% endcomment %}
+                {% comment %} {% else %} {% endcomment %}
+                    <a href="{% url 'login' %}" style="color: #333; margin: 0 15px;">Login</a>
+                    <a href="{% url 'register' %}" style="color: #333;">Register</a>
+                {% comment %} {% endif %} {% endcomment %}
+            </div>
+    </div>
+</nav>
+
+<div style="text-align: center; margin-top: 50px;">
+    <h1 style="font-size: 2.5rem; color: #333; font-family: 'Roboto', sans-serif;">Welcome to my Shop</h1>
+    <p style="font-size: 1.25rem; color: #666;">Your one-stop solution for billing management!</p>
+    <a href="{% url 'login' %}" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Get Started</a>
+</div>
+
+<div>
+
+</div> 
+<div style="display: flex; justify-content: space-around; margin-top: 30px; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 250px; padding: 15px;">
+        <h3 style="color: #333;">Features</h3>
+        <ul style="list-style-type: none; padding: 0;">
+            <li>✔ Easy Bill Creation</li>
+            <li>✔ User Authentication</li>
+            <li>✔ Detailed Bill Tracking</li>
+        </ul>
+    </div>
+    <div style="flex: 1; min-width: 250px; padding: 15px;">
+        <h3 style="color: #333;">Contact Us</h3>
+        <p>If you have any questions, feel free to reach out!</p>
+        <p>Email: ankit@yourshop.com</p>
+    </div>
+    <div style="flex: 1; min-width: 250px; padding: 15px;">
+        <h3 style="color: #333;">Follow Us</h3>
+        <p>Stay updated with our latest features!</p>
+        <a href="#" style="background-color: #6c757d; color: white; padding: 10px; text-decoration: none; border-radius: 5px; margin-right: 5px;">Facebook</a>
+        <a href="#" style="background-color: #6c757d; color: white; padding: 10px; text-decoration: none; border-radius: 5px;">Twitter</a>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer style="background-color: #333; color: white; text-align: center; padding: 10px; position: relative; bottom: 0; width: 100%;">
+    <div style="max-width: 1200px; margin: auto;">
+        <p>&copy; 2024 MyShop. All rights reserved.</p>
+    </div>
+</footer>
+
+{% endblock %}

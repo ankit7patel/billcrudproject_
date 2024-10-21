@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background: url('https://wallpapers.com/images/featured/theoretical-physics-2cxq76fiszqac8la.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color: #fff;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #007bff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+        }
+
+        h4 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-outline {
+            margin-bottom: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            display: inline-block;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            color: #333;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgba(0, 123, 255, 0.8);
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            th {
+                display: none; /* Hide headers on small screens */
+            }
+
+            td {
+                text-align: left;
+                padding-left: 50%; /* Add space for labels */
+                position: relative;
+                border: none;
+                border-bottom: 1px solid #ddd;
+            }
+
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 50%;
+                padding-left: 10px;
+                font-weight: bold;
+                color: #007bff; /* Optional: Change color for labels */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">Your Logo</div>
+    <div class="nav-links">
+    
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div class="container">
+    {% if key2 %}
+    <h4>Update Your Query</h4>
+    <form action="{% url 'update' x=key2.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-outline">
+            <label >Name</label>
+            <input type="text" value="{{ key2.name }}" name="name"  readonly />
+        </div>
+
+        <div class="form-outline">
+            <label>Email</label>
+            <input type="email" name="email" value="{{ key2.email }}" readonly />
+        </div>
+
+        <div class="form-outline">
+            <label>Message</label>
+            <input name="query" rows="4" placeholder=" enter your query...."></textarea>
+        </div>
+
+        <button type="submit">Update Query</button>
+    </form>
+    {% endif %}
+
+    <h4>Welcome: {{ data.name }}</h4>
+
+    <table>
+        <thead>
+            <tr>
+                <th>N0.</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Query</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in key1 %}
+            <tr>
+                <td data-label="N0.">{{ forloop.counter }}</td>
+                <td data-label="Name">{{ i.name }}</td>
+                <td data-label="Email">{{ i.email }}</td>
+                <td data-label="Query">{{ i.query }}</td>
+                <td data-label="Actions">
+                    <a href="{% url 'edit' x=i.id %}">Edit</a>
+                    <a href="{% url 'delete' x=i.id y=i.email %}" style="margin-left: 10px;">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
